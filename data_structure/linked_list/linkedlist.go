@@ -10,20 +10,21 @@ type LinkedList interface {
 	DeleteFirst()
 	DeleteLast()
 	Contains(val int) bool
+	LinkededListHead() *Node
 }
 
-type node struct {
-	val  int
-	next *node
+type Node struct {
+	Val  int
+	Next *Node
 }
 
-func NewNode(val int) *node {
-	return &node{val: val, next: nil}
+func NewNode(val int) *Node {
+	return &Node{Val: val, Next: nil}
 }
 
 type linkedList struct {
-	head *node
-	tail *node
+	head *Node
+	tail *Node
 }
 
 func NewLinkedList() LinkedList {
@@ -40,7 +41,7 @@ func (l *linkedList) AddLast(val int) {
 		l.head = newNode
 		l.tail = newNode
 	} else {
-		l.tail.next = newNode
+		l.tail.Next = newNode
 		l.tail = newNode
 	}
 
@@ -55,7 +56,7 @@ func (l *linkedList) AddFirst(val int) {
 	} else {
 		prevHead := l.head
 		l.head = newNode
-		l.head.next = prevHead
+		l.head.Next = prevHead
 	}
 
 }
@@ -64,10 +65,10 @@ func (l *linkedList) IndexOf(val int) int {
 	idx := 0
 	current := l.head
 	for current != nil {
-		if current.val == val {
+		if current.Val == val {
 			return idx
 		}
-		current = current.next
+		current = current.Next
 		idx++
 	}
 	return -1
@@ -90,25 +91,29 @@ func (l *linkedList) DeleteFirst() {
 		return
 	}
 
-	if l.head.next != nil {
-		l.head = l.head.next
+	if l.head.Next != nil {
+		l.head = l.head.Next
 	}
 
 }
 
 func (l *linkedList) DeleteLast() {
 	current := l.head
-	for current.next.next != nil {
-		current = current.next
+	for current.Next.Next != nil {
+		current = current.Next
 	}
 	l.tail = current
-	l.tail.next = nil
+	l.tail.Next = nil
 }
 
 func (l *linkedList) Print() {
 	current := l.head
 	for current != nil {
-		fmt.Printf("current.val: %v\n", current.val)
-		current = current.next
+		fmt.Printf("current.val: %v\n", current.Val)
+		current = current.Next
 	}
+}
+
+func (l *linkedList) LinkededListHead() *Node {
+	return l.head
 }

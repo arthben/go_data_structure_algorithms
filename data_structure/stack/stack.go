@@ -8,7 +8,7 @@ LIFO ( Last In First Out). Data selalu masuk dan keluar dari top
 */
 
 type Stack interface {
-	isEmpty() bool
+	IsEmpty() bool
 	Peek() int
 	Push(data int)
 	Pop()
@@ -34,7 +34,7 @@ func NewStack() Stack {
 	return &stackData{top: nil, count: 0}
 }
 
-func (s *stackData) isEmpty() bool {
+func (s *stackData) IsEmpty() bool {
 	return s.top == nil
 }
 
@@ -60,8 +60,10 @@ func (s *stackData) Push(data int) {
 }
 
 func (s *stackData) Pop() {
-	s.top = s.top.next
-	s.count--
+	if s.top != nil {
+		s.top = s.top.next
+		s.count--
+	}
 }
 
 func (s *stackData) Print() {
