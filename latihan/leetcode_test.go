@@ -8,6 +8,49 @@ import (
 	"testing"
 )
 
+func TestMyEditor(t *testing.T) {
+	instruction := [][]string{
+		{"1", "ewcgpjfh"},
+		{"1", "igqsbqyp"},
+		{"1", "qsdliigcj"},
+		{"4"},
+		{"3", "15"},
+		{"1", "iilmgp"},
+		{"2", "8"},
+		{"4"},
+		{"2", "18"},
+		{"1", "scwhors"},
+	}
+
+	// instruction := [][]string{
+	// 	{"1", "abc"},
+	// 	{"3", "3"},
+	// 	{"2", "3"},
+	// 	{"1", "xy"},
+	// 	{"3", "2"},
+	// 	{"4"},
+	// 	{"4"},
+	// 	{"3", "1"},
+	// }
+	MyTextEditor(instruction)
+}
+
+func TestTuring(t *testing.T) {
+	// room := 10
+	// occupancies := [][]int{{5, 7}, {1, 3}, {9, 10}}
+	// jawaban := 2 // tgl 4 & 8 masih kosong
+
+	// room := 5
+	// occupancies := [][]int{{1, 3}, {2, 4}}
+	// jawaban := 1 // tgl 5 masih kosong
+
+	room := 6
+	occupancies := [][]int{{1, 6}}
+	jawaban := 0
+	fmt.Printf("room: %v, occupancies: %v\n", room, occupancies)
+	fmt.Printf("answer: %v (%v)\n", penjadwalan(room, occupancies) == jawaban, jawaban)
+}
+
 func TestMinLength(t *testing.T) {
 	s := "ABFCACDB"
 	fmt.Printf("Input: %v\n", s)
